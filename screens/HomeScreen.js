@@ -13,6 +13,7 @@ export default function HomeScreen() {
     await removeItem('onboarded');
     navigation.push('Onboarding');
   }
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.lottie}>
