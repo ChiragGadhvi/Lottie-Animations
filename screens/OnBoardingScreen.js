@@ -1,41 +1,50 @@
-import { View, Text, SafeAreaView, StyleSheet } from 'react-native'
+import { View, Text, SafeAreaView, StyleSheet, Dimensions, TouchableOpacity } from 'react-native'
 import React from 'react'
 import Onboarding from 'react-native-onboarding-swiper';
 import LottieView from 'lottie-react-native';
+import { useNavigation } from '@react-navigation/native';
 
-
+const {width,height} = Dimensions.get('window');
 
 export default function OnBoardingScreen() {
+  const navigation = useNavigation();
+  const handleDone = ()=>{
+    navigation.navigate('Home');
+  }
+  
   return (
     <View style={styles.container}>
       <Onboarding
+      onDone={handleDone}
+      onSkip={handleDone}
+      bottomBarHighlight={false}
       containerStyles={{paddingHorizontal: 15}}
         pages={[
           {
-            backgroundColor: '#fff',
+            backgroundColor: '#a7f3d0',
             image: (
               <View style={styles.lottie}>
-                <LottieView source={require('../assets/animations/wakeup.json')} autoPlay loop />
+                <LottieView source={require('../assets/animations/a.json')} autoPlay loop />
               </View>
             ),
-            title: 'Wake Up Early',
-            subtitle: 'For a good and productive day!',
+            title: 'Be Productive',
+            subtitle: 'For a good and efficient day!',
           },
           {
-            backgroundColor: '#fff',
+            backgroundColor: '#fef3c7',
             image: (
-              <View>
-                <Text>Hello Chirag</Text>
+              <View style={styles.lottie}>
+                <LottieView source={require('../assets/animations/achieve.json')} autoPlay loop />
               </View>
             ),
-            title: 'Eat Healthy',
-            subtitle: 'To stay Fit and Energitic!!',
+            title: 'Achieve Success',
+            subtitle: 'Strive, Thrive, Succeed!!',
           },
           {
-            backgroundColor: '#fff',
+            backgroundColor: '#a78bfa',
             image: (
-              <View>
-                <Text>Hello Chirag</Text>
+              <View style={styles.lottie}>
+                <LottieView source={require('../assets/animations/work.json')} autoPlay loop />
               </View>
             ),
             title: 'Stay Focused',
@@ -53,7 +62,13 @@ const styles = StyleSheet.create({
     backgroundColor: 'white'
   },
   lottie: {
-    width: 300,
-    height: 300,
-  }
+    width: width*0.9,
+    height:width
+  },
+  // doneButton: {
+  //   padding: 20,
+  //   backgroundColor: 'white',
+  //   borderTopLeftRadius: 100,
+  //   borderBottomLeftRadius: 100,
+  // }
 })
